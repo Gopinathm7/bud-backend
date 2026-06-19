@@ -270,12 +270,12 @@ def get_response(user_id: str, message: str, role: str = 'friend') -> str:
     level_prompt = LEVEL_PROMPTS.get(level, LEVEL_PROMPTS[1])
 
     full_personality = (
-        BUD_PERSONALITY + "\n\n" +
-        persona + "\n\n" +
-        level_prompt + "\n\n" +
-        MODE_PROMPTS[mode] + "\n\n" +
-        MOOD_PROMPTS[mood]
-    )
+    BUD_PERSONALITY + "\n\n" +
+    persona + "\n\n" +
+    level_prompt + "\n\n" +
+    MODE_PROMPTS.get(mode, MODE_PROMPTS["friend"]) + "\n\n" +
+    MOOD_PROMPTS[mood]
+)
 
     if facts:
         full_personality += "\n\n" + facts
